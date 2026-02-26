@@ -1,4 +1,4 @@
-// Import
+// Imports
 import express from "express";
 
 // Configure Express App
