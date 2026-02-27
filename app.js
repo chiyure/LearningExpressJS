@@ -8,7 +8,7 @@ const app = new express();
 // Configure Middleware
 
 // Controllers
-const modulesController = async (req, res) => {
+const modulesController = async (req, res, variant) => {
 // Initialisation
     let table = "Modules";
     let fields = ["ModuleID", "ModuleCode", "ModuleName", "ModuleLevel", "ModuleYearID", "ModuleLeaderID", "ModuleImageURL"];
@@ -21,7 +21,22 @@ const modulesController = async (req, res) => {
     
 
     // Build and execute query
-    const sql = `SELECT ${fields} FROM ${table}`; 
+    let where = " ";
+    const id = parseInt(req.params.id);
+    switch (variant) {
+        case "primary": 
+        where = `WHERE ModuleID=${id}`;
+        break;
+        case "leader":
+        where = `WHERE ModuleLeaderID=${id}`;
+        break;
+        case "users":
+        table = `(${table} INNER JOIN Modulemembers ON MOduleID=ModulememberModuleID)`;
+        where = `WHERE ModulememberUserID=${id}`;
+        break;
+    }
+
+    const sql = `SELECT ${fields} FROM ${table} ${where}`; 
     try {
         const [result] = await database.query(sql);
         if(result.length === 0) res.status(404).json({message: "No record(s) found"});
@@ -32,7 +47,12 @@ const modulesController = async (req, res) => {
 };
 
 // Endpoints
-app.get("/api/modules", modulesController);
+app.get("/api/modules", (req, res) => modulesController(req, res, null));
+app.get("/api/modules/:id", (req, res) => modulesController(req, res, "primary"));
+app.get("/api/modules/leader/:id", (req, res) => modulesController(req, res, "leader"));
+app.get("/api/modules/users/:id", (req, res) => modulesController(req, res, "users"));
+
+
 
 // Start Server
 const PORT = process.env.PORT || 5000;
