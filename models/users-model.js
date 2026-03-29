@@ -2,6 +2,20 @@ const model = {};
 model.table = "Users";
 model.fields = ["UserID", "UserFirstname", "UserLastname", "UserEmail", "UserRegistered", "UserLevel", "UserYearID", "UserUsertypeID", "UserImageURL",];
 
+model.buildCreateQuery = (req) => {
+    
+    return `INSERT INTO ${model.table} SET
+    UserFirstname=:UserFirstname,
+    UserLastname=:UserLastname,
+    UserEmail=:UserEmail,
+    UserRegistered=:UserRegistered,
+    UserLevel=:UserLevel,
+    UserYearID=:UserYearID,
+    UserUsertypeID=:UserUsertypeID,
+    UserImageURL=:UserImageURL
+    `;
+};
+
 model.buildReadQuery = (req, variant) => {
     // Initialisation
     let table = model.table;
@@ -19,14 +33,14 @@ model.buildReadQuery = (req, variant) => {
     const id = parseInt(req.params.id);
     switch (variant) {
         case "primary": 
-        where = `WHERE UserID=${id}`;
+        where = `WHERE UserID=:ID`;
         break;
         case "staff": 
         where = `WHERE UserUsertypeID=${STAFF}`;
         break;
         case "groups": 
         table = `(${table} INNER JOIN Groupmembers ON UserID=GroupmemberUserID)`;
-        where = `WHERE GroupmemberGroupID=${id}`;
+        where = `WHERE GroupmemberGroupID=:ID`;
         break;
     }
 

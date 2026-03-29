@@ -13,7 +13,7 @@ model.buildReadQuery = (req, variant) => {
     const id = parseInt(req.params.id);
     switch (variant) {
         case "primary": 
-        where = `WHERE YearID=${id}`;
+        where = `WHERE YearID=:ID`;
         break;
     }
 

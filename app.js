@@ -32,7 +32,7 @@ app.get("/api/users/staff", (req, res) => usersController.get(req, res, "staff")
 app.get("/api/users/:id", (req, res) => usersController.get(req, res, "primary"));
 app.get("/api/users/groups/:id", (req, res) => usersController.get(req, res, "groups"));
 
-//app.post("/api/users", usersController.post);
+app.post("/api/users", usersController.post);
 
 app.get("/api/usertypes", (req, res) => usertypesController.get(req, res, null));
 app.get("/api/usertypes/:id", (req, res) => usertypesController.get(req, res, "primary"));
