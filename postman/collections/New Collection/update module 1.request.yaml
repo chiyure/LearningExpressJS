@@ -1,0 +1,26 @@
+$kind: http-request
+name: update module 1
+url: localhost:5000/api/modules/1
+method: PUT
+body:
+  type: json
+  content: "    {\r
+
+    \        \"ModuleID\": 1,\r
+
+    \        \"ModuleCode\": \"CI4105\",\r
+
+    \        \"ModuleName\": \"Programming 101\",\r
+
+    \        \"ModuleLevel\": 4,\r
+
+    \        \"ModuleYearID\": 1,\r
+
+    \        \"ModuleLeaderID\": 820,\r
+
+    \        \"ModuleImageURL\":
+    \"https://images.freeimages.com/images/small-previews/9b8/electronic-compon\
+    ents-2-1242738.jpg\"\r
+
+    \    }"
+order: 2257308950507348

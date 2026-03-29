@@ -1,0 +1,5 @@
+$kind: http-request
+name: now module
+url: localhost:5000/api/users/staff
+method: GET
+order: 1796746402231967
