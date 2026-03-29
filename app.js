@@ -12,6 +12,11 @@ const app = new express();
 
 // Configure Middleware
 app.use(express.json());
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
 
 // Controllers
 const modulesController = new Controller(modulesModel, database);
@@ -40,7 +45,7 @@ app.get("/api/usertypes/:id", (req, res) => usertypesController.get(req, res, "p
 app.get("/api/years", (req, res) => yearsController.get(req, res, null));
 app.get("/api/years/:id", (req, res) => yearsController.get(req, res, "primary"));
 
-//app.post("/api/years", yearsController.post);
+app.post("/api/years", yearsController.post);
 
 // Start Server
 const PORT = process.env.PORT || 5000;
