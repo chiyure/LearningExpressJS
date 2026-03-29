@@ -1,0 +1,24 @@
+$kind: http-request
+name: new modules
+url: localhost:5000/api/modules
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"ModuleCode\": \"CI7100\",\r
+
+    \    \"ModuleName\": \"Designing Restful APIs\",\r
+
+    \    \"ModuleLevel\": 7,\r
+
+    \    \"ModuleYearID\": 1,\r
+
+    \    \"ModuleLeaderID\": 824,\r
+
+    \    \"ModuleImageURL\":
+    https://images.freeimages.com/images/small-previews/9b8/electronic-componen\
+    ts-2-1242738.jpg\r
+
+    }"
+order: 2197443043006231

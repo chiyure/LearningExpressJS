@@ -1,7 +1,11 @@
-const buildReadQuery = (req, variant) => {
+const model = {};
+model.table = "Users";
+model.fields = ["UserID", "UserFirstname", "UserLastname", "UserEmail", "UserRegistered", "UserLevel", "UserYearID", "UserUsertypeID", "UserImageURL",];
+
+model.buildReadQuery = (req, variant) => {
     // Initialisation
-    let table = "Users";
-    let fields = ["UserID", "UserFirstname", "UserLastname", "UserEmail", "UserRegistered", "UserLevel", "UserYearID", "UserUsertypeID", "UserImageURL",];
+    let table = model.table;
+    let fields = model.fields;
     const STAFF = 1; // Primary key for staff type in unibasedb Usertype table
 
     // Resolve foreign keys
@@ -29,4 +33,4 @@ const buildReadQuery = (req, variant) => {
     return `SELECT ${fields} FROM ${table} ${where}`; 
 };
 
-export default buildReadQuery;
+export default model;

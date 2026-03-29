@@ -1,7 +1,11 @@
-const buildReadQuery = (req, variant) => {
+const model = {};
+model.table = "Years";
+model.fields = ["YearID", "YearName"];
+
+model.buildReadQuery = (req, variant) => {
     // Initialisation
-    let table = "Years";
-    let fields = ["YearID", "YearName"];
+    let table = model.table;
+    let fields = model.fields;
     
     // Resolve foreign keys
     // Build and return query
@@ -16,4 +20,4 @@ const buildReadQuery = (req, variant) => {
     return `SELECT ${fields} FROM ${table} ${where}`; 
 };
 
-export default buildReadQuery;
+export default model;

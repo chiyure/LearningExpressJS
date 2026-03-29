@@ -2,21 +2,22 @@
 import express from "express";
 import database from "./database.js";
 import Controller from "./Controller.js";
-import buildReadModulesQuery from "./models/modules-model.js";
-import buildReadUsersQuery from "./models/users-model.js"; 
-import buildReadUsertypesQuery from "./models/usertypes-model.js";
-import buildReadYearsQuery from "./models/years-model.js";
+import modulesModel from "./models/modules-model.js";
+import usersModel from "./models/users-model.js"; 
+import usertypesModel from "./models/usertypes-model.js";
+import yearsModel from "./models/years-model.js";
 
 // Configure Express App
 const app = new express();
 
 // Configure Middleware
+app.use(express.json());
 
 // Controllers
-const modulesController = new Controller(buildReadModulesQuery, database);
-const usersController = new Controller(buildReadUsersQuery, database);
-const usertypesController = new Controller(buildReadUsertypesQuery, database);
-const yearsController = new Controller(buildReadYearsQuery, database);
+const modulesController = new Controller(modulesModel, database);
+const usersController = new Controller(usersModel, database);
+const usertypesController = new Controller(usertypesModel, database);
+const yearsController = new Controller(yearsModel, database);
 
 // Endpoints
 app.get("/api/modules", (req, res) => modulesController.get(req, res, null));
@@ -24,7 +25,7 @@ app.get("/api/modules/:id", (req, res) => modulesController.get(req, res, "prima
 app.get("/api/modules/leader/:id", (req, res) => modulesController.get(req, res, "leader"));
 app.get("/api/modules/users/:id", (req, res) => modulesController.get(req, res, "users"));
 
-//app.post("/api/modules", modulesController.post);
+app.post("/api/modules", modulesController.post);
 
 app.get("/api/users", (req, res) => usersController.get(req, res, null));
 app.get("/api/users/staff", (req, res) => usersController.get(req, res, "staff"));
