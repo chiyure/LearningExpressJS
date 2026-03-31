@@ -62,4 +62,8 @@ model.buildUpdateQuery = (req) => {
     `;
 };
 
+model.buildDeleteQuery = (req) => {
+    return `DELETE FROM ${model.table} WHERE UserID=:ID`;
+};
+
 export default model;

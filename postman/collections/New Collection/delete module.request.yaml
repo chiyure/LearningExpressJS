@@ -1,0 +1,5 @@
+$kind: http-request
+name: delete module
+url: localhost:5000/api/modules
+method: DELETE
+order: 4458338362912406

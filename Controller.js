@@ -3,6 +3,7 @@ class Controller {
         this.buildCreateQuery = model.buildCreateQuery;
         this.buildReadQuery = model.buildReadQuery;
         this.buildUpdateQuery = model.buildUpdateQuery;
+        this.buildDeleteQuery = model.buildDeleteQuery;
         this.database = database;
     }
 
@@ -32,11 +33,23 @@ class Controller {
 
     put = async (req, res) => {
         const sql = this.buildUpdateQuery(req);
-        const id = req.params.id;
-        const parameters = { ...req.body, ID: id };
+        const parameters = { ...req.body, ID: parseInt(req.params.id) };
         try {
             const status = await this.database.query(sql, parameters);
             this.get(req, res, "primary");
+        } catch(error) {
+            res.status(500).json({ message: `Failed to execute query: ${error.message}` });
+        }
+    };
+
+    delete = async (req, res) => {
+        const sql = this.buildDeleteQuery(req);
+        const parameters = { ID: parseInt(req.params.id) };
+        try {
+            const status = await this.database.query(sql, parameters);
+            if(status[0].affectedRows === 0)
+                res.status(400).json({message: `Failed to delete record ${req.params.id}`});
+            res.status(204);           
         } catch(error) {
             res.status(500).json({ message: `Failed to execute query: ${error.message}` });
         }

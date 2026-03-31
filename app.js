@@ -32,6 +32,7 @@ app.get("/api/modules/users/:id", (req, res) => modulesController.get(req, res, 
 
 app.post("/api/modules", modulesController.post);
 app.put("/api/modules/:id", modulesController.put);
+app.delete("/api/modules/:id", modulesController.delete);
 
 app.get("/api/users", (req, res) => usersController.get(req, res, null));
 app.get("/api/users/staff", (req, res) => usersController.get(req, res, "staff"));
@@ -40,16 +41,21 @@ app.get("/api/users/groups/:id", (req, res) => usersController.get(req, res, "gr
 
 app.post("/api/users", usersController.post);
 app.put("/api/users/:id", usersController.put);
-
+app.delete("/api/users/:id", usersController.delete);
 
 app.get("/api/usertypes", (req, res) => usertypesController.get(req, res, null));
 app.get("/api/usertypes/:id", (req, res) => usertypesController.get(req, res, "primary"));
+
+app.post("/api/years", usertypesController.post);
+app.put("/api/years/:id", usertypesController.put);
+app.delete("/api/years/:id", usertypesController.delete);
 
 app.get("/api/years", (req, res) => yearsController.get(req, res, null));
 app.get("/api/years/:id", (req, res) => yearsController.get(req, res, "primary"));
 
 app.post("/api/years", yearsController.post);
 app.put("/api/years/:id", yearsController.put);
+app.delete("/api/years/:id", yearsController.delete);
 
 
 // Start Server

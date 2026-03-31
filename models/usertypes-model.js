@@ -38,4 +38,8 @@ model.buildUpdateQuery = (req, variant) => {
     return `UPDATE ${fields} FROM ${table} ${where}`; 
 };
 
+model.buildDeleteQuery = (req) => {
+    return `DELETE FROM ${model.table} WHERE UsertypeID=:ID`;
+};
+
 export default model;

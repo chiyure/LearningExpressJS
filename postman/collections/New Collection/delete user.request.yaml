@@ -1,0 +1,5 @@
+$kind: http-request
+name: delete user
+url: localhost:5000/api/users
+method: DELETE
+order: 4487089387867549

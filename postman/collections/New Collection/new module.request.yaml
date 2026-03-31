@@ -1,5 +1,5 @@
 $kind: http-request
-name: new modules
+name: new module
 url: localhost:5000/api/modules
 method: POST
 body:
