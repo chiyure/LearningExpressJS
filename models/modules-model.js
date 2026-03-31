@@ -46,4 +46,17 @@ model.buildReadQuery = (req, variant) => {
     return `SELECT ${fields} FROM ${table} ${where}`; 
 };
 
+model.buildUpdateQuery = (req) => {
+    
+    return `UPDATE ${model.table} SET
+    ModuleCode=:ModuleCode,
+    ModuleName=:ModuleName,
+    ModuleLevel=:ModuleLevel,
+    ModuleYearID=:ModuleYearID,
+    ModuleLeaderID=:ModuleLeaderID,
+    ModuleImageURL=:ModuleImageURL
+    WHERE ModuleID=:ID
+    `;
+};
+
 export default model;

@@ -2,6 +2,7 @@ class Controller {
     constructor(model, database) {
         this.buildCreateQuery = model.buildCreateQuery;
         this.buildReadQuery = model.buildReadQuery;
+        this.buildUpdateQuery = model.buildUpdateQuery;
         this.database = database;
     }
 
@@ -28,6 +29,19 @@ class Controller {
             res.status(500).json({ message: `Failed to execute query: ${error.message}` });
         }
     };
+
+    put = async (req, res) => {
+        const sql = this.buildUpdateQuery(req);
+        const id = req.params.id;
+        const parameters = { ...req.body, ID: id };
+        try {
+            const status = await this.database.query(sql, parameters);
+            this.get(req, res, "primary");
+        } catch(error) {
+            res.status(500).json({ message: `Failed to execute query: ${error.message}` });
+        }
+    };
+
 }
 
 export default Controller;

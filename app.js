@@ -31,6 +31,7 @@ app.get("/api/modules/leader/:id", (req, res) => modulesController.get(req, res,
 app.get("/api/modules/users/:id", (req, res) => modulesController.get(req, res, "users"));
 
 app.post("/api/modules", modulesController.post);
+app.put("/api/modules/:id", modulesController.put);
 
 app.get("/api/users", (req, res) => usersController.get(req, res, null));
 app.get("/api/users/staff", (req, res) => usersController.get(req, res, "staff"));
@@ -38,6 +39,8 @@ app.get("/api/users/:id", (req, res) => usersController.get(req, res, "primary")
 app.get("/api/users/groups/:id", (req, res) => usersController.get(req, res, "groups"));
 
 app.post("/api/users", usersController.post);
+app.put("/api/users/:id", usersController.put);
+
 
 app.get("/api/usertypes", (req, res) => usertypesController.get(req, res, null));
 app.get("/api/usertypes/:id", (req, res) => usertypesController.get(req, res, "primary"));
@@ -46,6 +49,8 @@ app.get("/api/years", (req, res) => yearsController.get(req, res, null));
 app.get("/api/years/:id", (req, res) => yearsController.get(req, res, "primary"));
 
 app.post("/api/years", yearsController.post);
+app.put("/api/years/:id", yearsController.put);
+
 
 // Start Server
 const PORT = process.env.PORT || 5000;

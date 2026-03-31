@@ -20,4 +20,22 @@ model.buildReadQuery = (req, variant) => {
     return `SELECT ${fields} FROM ${table} ${where}`; 
 };
 
+model.buildUpdateQuery = (req, variant) => {
+    // Initialisation
+    let table = model.table;
+    let fields = model.fields;
+    
+    // Resolve foreign keys
+    // Build and return query
+    let where = " ";
+    const id = parseInt(req.params.id);
+    switch (variant) {
+        case "primary": 
+        where = `WHERE YearID=:ID`;
+        break;
+    }
+
+    return `UPDATE ${fields} FROM ${table} ${where}`; 
+};
+
 export default model;

@@ -1,0 +1,30 @@
+$kind: http-request
+name: update module 14
+url: localhost:5000/api/modules/14
+method: PUT
+body:
+  type: json
+  content: "    {\r
+
+    \        \"ModuleID\": 14,\r
+
+    \        \"ModuleCode\": \"CI6130\",\r
+
+    \        \"ModuleName\": \"Advanced React Native\",\r
+
+    \        \"ModuleLevel\": 6,\r
+
+    \        \"ModuleYearID\": 3,\r
+
+    \        \"ModuleLeaderID\": 820,\r
+
+    \        \"ModuleImageURL\":
+    \"https://images.freeimages.com/images/small-previews/fa1/cable-5-1243077.j\
+    pg\",\r
+
+    \        \"ModuleYearName\": \"2022-23\",\r
+
+    \        \"ModuleLeaderName\": \"Graeme Jones\"\r
+
+    \    }"
+order: 4326376796007112

@@ -47,4 +47,19 @@ model.buildReadQuery = (req, variant) => {
     return `SELECT ${fields} FROM ${table} ${where}`; 
 };
 
+model.buildUpdateQuery = (req) => {
+    
+    return `UPDATE ${model.table} SET
+    UserFirstname=:UserFirstname,
+    UserLastname=:UserLastname,
+    UserEmail=:UserEmail,
+    UserRegistered=:UserRegistered,
+    UserLevel=:UserLevel,
+    UserYearID=:UserYearID,
+    UserUsertypeID=:UserUsertypeID,
+    UserImageURL=:UserImageURL
+    WHERE UserID=:ID
+    `;
+};
+
 export default model;
